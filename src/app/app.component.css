@@ -1,0 +1,24 @@
+.nav-link {
+  font-size: large;
+}
+
+.navbar {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border: 0;
+  border-radius: 0;
+  margin-bottom: 0;
+  font-size: 3px;
+  letter-spacing: 3px;
+
+}
+.navbar-nav li a{
+font: 15px Montserrat, sans-serif;
+line-height: 1.8;
+color:grey;
+}
+
+.navbar-nav  li a:hover {
+  color: #1abc9c !important;
+
+}

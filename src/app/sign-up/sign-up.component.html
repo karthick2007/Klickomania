@@ -1,0 +1,124 @@
+<div class="container register">
+    <div class="row">
+        <div class="col-md-3 register-left">
+            <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+            <h3>Welcome !!</h3>
+            <input type="submit" name="" value="Login" [routerLink]="['/login']"/><br/>
+        </div>
+        <div class="col-md-9 register-right">
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <h3 class="register-heading">Register </h3>
+                    <form novalidate [formGroup]= "signUpForm">
+                    <div class="row register-form">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id ="customerFirstName" placeholder="First Name *"
+                                formControlName ="firstName"
+                                [ngClass]="{'is-invalid': firstNameMessage }"
+                                value="" />
+                                <span class="invalid-feedback">
+                                        {{ firstNameMessage }}
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id ="customerLastName" placeholder="Last Name *" value="" 
+                                formControlName ="lastName"
+                                [ngClass]="{'is-invalid': lastNameMessage }"/>
+                                <span class="invalid-feedback">
+                                        {{ lastNameMessage }}
+                                </span>
+                            </div>
+                            <div formGroupName = "passwordGroup">
+                                <div class="form-group" >
+                                    <input type="password" class="form-control" id ="Password" placeholder="Password *" value="" 
+                                    formControlName ="password"
+                                    [ngClass]="{'is-invalid': passwordMessage }"/>
+                                    <span class="invalid-feedback">
+                                            {{ passwordMessage }}
+                                    </span>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id ="confirmPassword" placeholder="Confirm Password *" value=""
+                                    formControlName ="confirmPassword"
+                                    [ngClass]="{'is-invalid': (signUpForm.get('passwordGroup').errors ||signUpForm.get('passwordGroup.confirmPassword').errors?.pattern) 
+                                
+                                               }"  />
+                                    <span class="invalid-feedback">
+                                            <span *ngIf="signUpForm.get('passwordGroup.confirmPassword').errors?.required">
+                                              Please confirm your Password.
+                                            </span>
+                                            <span *ngIf= "signUpForm.get('passwordGroup.confirmPassword').errors?.pattern && !signUpForm.get('passwordGroup.password').touched">
+                                                    Please enter valid password 
+                                                    (Atleast one letter, one number, one special characters and be longer than eight charaters)
+                                            </span>
+                                            <span *ngIf="signUpForm.get('passwordGroup').errors?.match">
+                                              The confirmation does not match the password.
+                                            </span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="maxl">
+                                    <label class="radio inline mr-4"> 
+                                        <input type="radio" name="gender" id ="customerGenderMale" value="male" 
+                                        formControlName ="gender">
+                                        <span> Male </span> 
+                                    </label>
+                                    <label class="radio inline"> 
+                                        <input type="radio" name="gender" id ="customerGenderFemale" value="female"
+                                        formControlName ="gender">
+                                        <span> Female </span> 
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="email" class="form-control" id ="customerEmail" placeholder="Your Email *" value="" 
+                                formControlName ="email"
+                                [ngClass]="{'is-invalid': emailMessage }"/>
+                                <span class="invalid-feedback">
+                                        {{ emailMessage }}
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id ="customerPhone" name="txtEmpPhone" class="form-control" placeholder="Your Phone *" value=""
+                                formControlName ="phone"
+                                [ngClass]="{'is-invalid': phoneMessage }"/>
+                                <span class="invalid-feedback">
+                                        {{ phoneMessage }}
+                                </span>
+                            </div>
+                            <div class="form-group" >
+                                <select class="form-control" id="securityQuestion" formControlName="securityAnswer" 
+                                [ngClass]="{'is-invalid': (signUpForm.get('securityAnswer').touched && signUpForm.get('securityAnswer').errors?.pattern)}">
+                                    <option class="hidden" selected disabled>Please select your Security Question</option>
+                                    <option>What is your Birthdate?</option>
+                                    <option>What is Your old Phone Number</option>
+                                    <option>What is your Pet Name?</option>
+                                </select>
+                                <span class="invalid-feedback">
+                                <span *ngIf="(signUpForm.get('securityAnswer').errors?.pattern && signUpForm.get('securityAnswer').touched)">
+                                    Please select a valid security Question
+                                  </span></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control"  id = "securityAnswer" placeholder="Enter Your Answer *" value="" 
+                                formControlName ="answer"/>
+                            </div>
+                            <button type="submit"  class="btnRegister" id= "btnRegister"
+                            [disabled]= "!signUpForm.valid"
+                            [title]="signUpForm.valid ? 'Register User' : 'Disabled until the form data is valid'"
+                            (click) = "onSubmit()">Register</button>
+                        </div>
+                    </div>
+                </form>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
